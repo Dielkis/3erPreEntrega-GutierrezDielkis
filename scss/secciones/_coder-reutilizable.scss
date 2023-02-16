@@ -1,0 +1,60 @@
+.header__listamenu--activo {
+    font-weight: bold;
+}
+
+p,
+h2,
+h1,
+a,
+h3,
+div {
+    font-family: $typo-principal;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+a:hover {
+    text-decoration: underline black;
+}
+
+.imagenDeFondo {
+    background-image: url("../recursos/foto\ fondo\ 1.png");
+    background-size: cover;
+    width: 100%;
+}
+
+.img-redimension {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.margenDeParrafos {
+    margin-left: 0px;
+    padding-left: 25px;
+    padding-right: 25px;
+    max-width: 100%;
+    min-height: 500px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+nav {
+    background-color: #afc918;
+    vertical-align: middle;
+}
+
+
+
+/*MEDIA QUERY = DISPOSITIVOS MEDIANOS*/
+/*Dispositivos HASTA 768px son considerados medianos*/
+
+.animate__animated.animate__bounce {
+    --animate-duration: 2s;
+}
