@@ -1,5 +1,5 @@
 /*VARIABLES*/ /*VARIABLE GLOBALES*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;1,600&family=Farsan&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Farsan&display=swap");
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 * {
@@ -101,7 +101,7 @@
 }
 
 .TituloFormulario {
-  font-family: "Poppins", sans-serif;
+  font-family: "Barlow", sans-serif;
   font-weight: 600;
   color: #F9F9F9;
   text-align: center;
@@ -327,7 +327,7 @@ h1,
 a,
 h3,
 div {
-  font-family: "Poppins", sans-serif;
+  font-family: "Barlow", sans-serif;
 }
 
 a {
@@ -370,8 +370,6 @@ nav {
   vertical-align: middle;
 }
 
-/*MEDIA QUERY = DISPOSITIVOS MEDIANOS*/
-/*Dispositivos HASTA 768px son considerados medianos*/
 .animate__animated.animate__bounce {
   --animate-duration: 2s;
 }/*# sourceMappingURL=main.css.map */
