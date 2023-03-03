@@ -366,10 +366,15 @@ a:hover {
 }
 
 nav {
-  background-color: #afc918;
+  background-color: #AFC918;
   vertical-align: middle;
 }
 
 .animate__animated.animate__bounce {
   --animate-duration: 2s;
+}
+
+.b-cart {
+  background-color: #AFC918;
+  border-color: #AFC918;
 }/*# sourceMappingURL=main.css.map */
