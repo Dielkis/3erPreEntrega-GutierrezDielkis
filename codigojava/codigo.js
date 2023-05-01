@@ -44,26 +44,27 @@ boton3.addEventListener("click", () => {
   mostrarCarrito();
 });
 
-//
 function mostrarCarrito() {
   const tabla = document.getElementById("producto");
   tabla.innerHTML = ``;
   let counter = 1;
   let productosEnStorage = JSON.parse(localStorage.getItem("carrito"));
 
-  productosEnStorage.forEach((producto) => {
-    tabla.innerHTML += `
+  if (productosEnStorage !== null) {
+    productosEnStorage.forEach((producto) => {
+      tabla.innerHTML += `
             <tr>
               <th>${counter}</th>
               <td>${producto.id}</td>
               <td>${producto.nombre}</td>
               <td>$${producto.precio}</td>
               <td>${producto.cantidad}</td>
-              
             </tr>
           `;
-    counter++;
-  });
+      counter++;
+    });
+  }
+  
   tr = document.createElement("tr");
   tr.innerHTML = `<th>TOTAL</th>
                       <td></td>
@@ -78,4 +79,3 @@ function mostrarCarrito() {
   tabla.appendChild(tr);
 }
 
-mostrarCarrito();
