@@ -57,14 +57,15 @@
         <h1 class="animate__animated animate__flash">ACCESORIOS</h1>
         <div class="imagenDeFondo">
             <div class="container">
-                <div class="row">
+                <div id="misProductos" class="row">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xl-2 text-center pt-2">
                         <div class="card">
                             <img src="../recursos/foto2.jpg" class="card-img-top img-fluid p-2" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Rolineras</h5>
                                 <p class="card-text">500 bs</p>
-                                <a href="#" class="btn btn-success">Agregar al carrito</a>
+                                <button id="boton1" data-="1" href="#" class="btn btn-success">Agregar al
+                                    carrito</button>
                             </div>
                         </div>
                     </div>
@@ -74,7 +75,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">Valvulas</h5>
                                 <p class="card-text">25 bs</p>
-                                <a href="#" class="btn btn-success">Agregar al carrito</a>
+                                <button id="boton2" data-="2" href="#" class="btn btn-success">Agregar al
+                                    carrito</button>
                             </div>
                         </div>
                     </div>
@@ -84,7 +86,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">Eje trasero</h5>
                                 <p class="card-text">196.4 bs</p>
-                                <a href="#" class="btn btn-success">Agregar al carrito</a>
+                                <button id="boton3" data-="3" href="#" class="btn btn-success">Agregar al
+                                    carrito</button>
                             </div>
                         </div>
                     </div>
@@ -92,7 +95,7 @@
                         <div class="card">
                             <img src="../recursos/foto5.jpg" class="card-img-top img-fluid p-2" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Rolineras</h5>
+                                <h5 class="card-title">Rolinera</h5>
                                 <p class="card-text">200 bs</p>
                                 <a href="#" class="btn btn-success">Agregar al carrito</a>
                             </div>
@@ -130,6 +133,31 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="container">
+            <h3 class="text-center" id="titulo-carrito">Tu carrito de compras</h3>
+            <table class="table">
+                <thead class="thead-dark container">
+                    <tr id="trId">
+                        <td>#Item</td>
+                        <td></td>
+                        <td>Nombre</td>
+                        <td></td>
+                        <td>Cantidad</td>
+                        <td></td>
+                        <td>Precio</td>
+                        <td></td>
+                        <td>Total</td>
+                    </tr>
+                </thead>
+                <tbody class="table-striped" id="producto"></tbody>
+                <tfoot>
+                    <tr>
+                        <th id="total"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
         </div>
     </main>
     <footer>
@@ -185,6 +213,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+    <script src="../codigojava/codigo.js"></script>
 </body>
-
 </html>
