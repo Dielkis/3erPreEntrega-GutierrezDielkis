@@ -1,5 +1,5 @@
 const btnsAgregar = document.querySelectorAll(".btn-agregar");
-const carrito = [];
+let carrito = [];
 
 btnsAgregar.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -74,9 +74,24 @@ function agregarAlCarrito(id, nombre, precio) {
   mostrarCarrito();
 }
 
-const btnVaciarCarrito = document.getElementById("vaciar-carrito");
-btnVaciarCarrito.addEventListener("click", function() {
-  carrito = [];
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  mostrarCarrito();
+document.getElementById('vaciar-carrito').addEventListener('click', function() {
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: '¿Quieres vaciar el carrito?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, vaciar carrito',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      carrito = [];
+      localStorage.clear();
+      mostrarCarrito();
+      Swal.fire(
+        'Carrito vaciado',
+        'El carrito ha sido vaciado completamente',
+        'success'
+      )
+    }
+  })
 });
