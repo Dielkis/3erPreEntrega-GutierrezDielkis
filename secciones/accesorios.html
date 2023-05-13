@@ -55,7 +55,7 @@
     <main class="main-accesorios">
         <!-- CONTENIDO PRINCIPAL -->
         <h1 class="animate__animated animate__flash">ACCESORIOS</h1>
-        <div class="imagenDeFondo">
+        <div id="productos" class="imagenDeFondo">
             <div id="accesorios" class="container">
                 <div id="misProductos" class="row">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xl-2 text-center pt-2">
@@ -131,58 +131,32 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <h3 class="text-center" id="titulo-carrito">Tu carrito de compras</h3>
-            <table class="table">
-                <thead class="thead-dark container">
-                    <tr id="trId">
-
-                        <td>Producto N°</td>
-
-                        <td>ID</td>
-
-                        <td>Nombre</td>
-
-                        <td>Total</td>
-
-                        <td>Cantidad</td>
-
-
+        <!-- HTML -->
+        <div id="carrito">
+            <table >
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
-                <tbody class="table-striped" id="carrito"></tbody>
+                <tbody>
+                    <!-- Aquí se insertarán los elementos del carrito -->
+                </tbody>
                 <tfoot>
                     <tr>
-                        <th id="total"></th>
+                        <td colspan="3"></td>
+                        <td id="total">$0</td>
+                        <td>
+                            <button id="vaciar-carrito" class="boton-vaciar-carrito">Vaciar carrito</button>
+                        </td>
                     </tr>
                 </tfoot>
             </table>
         </div>
-        <!-- HTML -->
-<table id="carrito">
-    <thead>
-      <tr>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Cantidad</th>
-        <th>Total</th>
-        <th>Acción</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Aquí se insertarán los elementos del carrito -->
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3"></td>
-        <td id="total">$0</td>
-        <td>
-          <button id="vaciar-carrito" class="boton-vaciar-carrito">Vaciar carrito</button>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-  
     </main>
     <footer>
         <section id="footer">
