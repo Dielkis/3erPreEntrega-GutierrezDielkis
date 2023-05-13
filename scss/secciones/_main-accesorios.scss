@@ -44,3 +44,43 @@
         grid-gap: 10px;
     }
 }
+
+/* CSS */
+#carrito {
+    border-collapse: collapse;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  #carrito th {
+    background-color: #eee;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  #carrito td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  #carrito tfoot td {
+    font-weight: bold;
+    text-align: right;
+  }
+  
+  .boton-vaciar-carrito {
+    background-color: #f44336;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .boton-vaciar-carrito:hover {
+    background-color: #c62828;
+  }
+  
