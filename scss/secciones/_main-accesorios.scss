@@ -84,3 +84,10 @@
     background-color: #c62828;
   }
   
+  td {
+    padding: 5px !important;
+  }
+
+  th:first-child {
+    width: 50px !important;
+  }

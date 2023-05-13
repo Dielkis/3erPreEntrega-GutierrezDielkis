@@ -73,3 +73,10 @@ function agregarAlCarrito(id, nombre, precio) {
   localStorage.setItem("carrito", JSON.stringify(carrito));
   mostrarCarrito();
 }
+
+const btnVaciarCarrito = document.getElementById("vaciar-carrito");
+btnVaciarCarrito.addEventListener("click", function() {
+  carrito = [];
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  mostrarCarrito();
+});
