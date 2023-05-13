@@ -90,3 +90,7 @@ function mostrarCarrito() {
 }
 
 mostrarCarrito();
+
+document.addEventListener("DOMContentLoaded", function() {
+  mostrarCarrito();
+});
