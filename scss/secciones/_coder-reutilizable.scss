@@ -24,9 +24,10 @@ a:hover {
 }
 
 .imagenDeFondo {
-    background-image: url("../recursos/foto\ fondo\ 1.png");
+    background-image: url('../../recursos/fotofondo1.png');
     background-size: cover;
-    width: 100%;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .img-redimension {

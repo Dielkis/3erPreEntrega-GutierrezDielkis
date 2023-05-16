@@ -7,43 +7,63 @@ const vaciarCarritoBtn = document.getElementById("vaciar-carrito");
 document.addEventListener("DOMContentLoaded", obtenerDatosArchivosJson);
 
 function obtenerDatosArchivosJson() {
-    const URLJSON = "https://6462f4954dca1a6613515962.mockapi.io/accesorios";
-    fetch(URLJSON)
-      .then((response) => response.json())
-      .then((data) => {
-        productos = data;
-        mostrarProductos();
-        asignarEventosAgregarCarrito(); // Asignar eventos después de mostrar los productos
-      })
-      .catch((error) => {
-        console.error('Error al obtener los productos:', error);
-      });
-  }
+  const URLJSON = "https://6462f4954dca1a6613515962.mockapi.io/accesorios";
+  fetch(URLJSON)
+    .then((response) => response.json())
+    .then((data) => {
+      productos = data;
+      mostrarProductos();
+      asignarEventosAgregarCarrito(); // Asignar eventos después de mostrar los productos
+    })
+    .catch((error) => {
+      console.error('Error al obtener los productos:', error);
+    });
+}
 
 
 
-  function mostrarProductos() {
-    productosContainer.innerHTML = productos.map((producto) => {
-      return `
-        <div class="producto">
-          <h3>${producto.nombre}</h3>
-          <p>${producto.descripcion}</p>
-          <img src="${producto.imagen}" alt="${producto.nombre}">
-          <p>$${producto.precio}</p>
-          <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
+function mostrarProductos() {
+  productosContainer.innerHTML = productos.map((producto) => {
+    return `
+    <div class="producto imagenDeFondo">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xl-2 text-center pt-2">
+                    <div class="card">
+                        <img src="${producto.imagen}" class="card-img-top img-fluid p-2" alt="${producto.nombre}">
+                        <div class="card-body">
+                            <h5 class="card-title">${producto.nombre}</h5>
+                            <p class="card-text">$${producto.precio}</p>
+                            <button class="btn btn-success btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      `;
-    }).join("");
-    
-    asignarEventosAgregarCarrito(); // Asignar eventos después de mostrar los productos
-  }
+    </div>
+   `;
+  }).join("");
+
+  asignarEventosAgregarCarrito(); // Asignar eventos después de mostrar los productos
+}
+
 
 function asignarEventosAgregarCarrito() {
-    const agregarBotones = document.querySelectorAll(".btn-agregar");
-    agregarBotones.forEach((btn) => {
-      btn.addEventListener("click", agregarAlCarrito);
+  const botonesAgregar = document.querySelectorAll('.btn-agregar');
+  botonesAgregar.forEach((boton) => {
+    boton.addEventListener('click', () => {
+      agregarAlCarrito(event);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Producto agregado',
+        showConfirmButton: false,
+        timer: 1500
+      });
     });
-  }
+  });
+}
+
 
 function mostrarCarrito() {
   const carritoItems = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -54,40 +74,36 @@ function mostrarCarrito() {
   }
 
   carritoContainer.innerHTML = `
-    <table>
-      <thead>
-        <tr>
-          <th>Imagen</th>
-          <th>Producto</th>
-          <th>Precio</th>
-          <th>Cantidad</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${carritoItems
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Producto</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+      ${carritoItems
           .map(
             (item) => `
-              <tr>
-                <td>
-                  <img src=${item.imagen}>
-                </td>
-                <td>${item.nombre}</td>
-                <td>${item.precio}</td>
-                <td>${item.cantidad}</td>
-                <td>${item.precio * item.cantidad}</td>
-              </tr>
-            `
-          )
-          .join("")}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3">Total</td>
-          <td>${calcularTotal(carritoItems)}</td>
-        </tr>
-      </tfoot>
-    </table>
+    <tr>
+      <th scope="row">${item.nombre}</th>
+      <td>${item.precio}</td>
+      <td>${item.cantidad}</td>
+      <td>${item.precio * item.cantidad}</td>
+    </tr>
+    `
+)
+.join("")}
+  </tbody>
+  <tfoot>
+      <tr>
+        <td colspan="3">Total</td>
+        <td>${calcularTotal(carritoItems)}</td>
+      </tr>
+    </tfoot>
+  </table>
   `;
 }
 
