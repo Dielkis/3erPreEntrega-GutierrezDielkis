@@ -7,7 +7,7 @@ const vaciarCarritoBtn = document.getElementById("vaciar-carrito");
 document.addEventListener("DOMContentLoaded", obtenerDatosArchivosJson);
 
 function obtenerDatosArchivosJson() {
-    const URLJSON = "./productos.json";
+    const URLJSON = "https://6462f4954dca1a6613515962.mockapi.io/accesorios";
     fetch(URLJSON)
       .then((response) => response.json())
       .then((data) => {
