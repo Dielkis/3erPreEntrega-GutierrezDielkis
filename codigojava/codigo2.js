@@ -4,60 +4,103 @@ const productosContainer = document.getElementById("productos-container");
 const carritoContainer = document.getElementById("carrito-container");
 const vaciarCarritoBtn = document.getElementById("vaciar-carrito");
 
-fetch('productos.json')
+function obtenerDatosArchivosJson(){
+    const URLJSON= "./productos.json"
+fetch(URLJSON)
   .then(response => response.json())
   .then(productos => {
-    mostrarProductos(productos);
+    mostrarCarrito(productos);
   })
   .catch(error => {
     console.error('Error al obtener los productos:', error);
   });
-
-function mostrarProductos(productos) {
-  productosContainer.innerHTML = productos.map(producto => {
-    return `
-      <div class="producto">
-        <h3>${producto.nombre}</h3>
-        <p>${producto.descripcion}</p>
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <p>$${producto.precio}</p>
-        <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
-      </div>
-    `;
-  }).join("");
-
-  const agregarBotones = document.querySelectorAll(".btn-agregar");
-  agregarBotones.forEach(btn => {
-    btn.addEventListener("click", agregarAlCarrito);
-  });
 }
 
-function agregarAlCarrito(event) {
-  const productoId = parseInt(event.target.dataset.id);
-  const producto = productos.find(prod => prod.id === productoId);
-  if (producto) {
-    carrito.push(producto);
+  function mostrarCarrito() {
+    const carritoContainer = document.getElementById("carrito");
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  
+    if (carrito.length === 0) {
+      carritoContainer.innerHTML = `<p>El carrito está vacío</p>`;
+      return;
+    }
+  
+    carritoContainer.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${carrito
+            .map(
+              (item) => `
+              <tr>
+                <td>
+                    <img src=${item.imagen}
+                </td>
+                <td>${productos.nombre}</td>
+                <td>${productos.precio}</td>
+                <td>${productos.cantidad}</td>
+                <td>${productos.precio * productos.cantidad}</td>
+              </tr>
+            `
+            )
+            .join("")}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">Total</td>
+            <td>${carrito.reduce(
+              (total, item) => total + productos.precio * productos.cantidad,
+              0
+            )}</td>
+          </tr>
+        </tfoot>
+      </table>
+    `;
+  }
+
+  function calcularTotal(productos) {
+    return productos.reduce((total, producto) => total + producto.precio, 0);
+  }
+  function agregarAlCarrito(id, nombre, precio) {
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    let producto = carrito.find((item) => item.id === id);
+  
+    if (producto) {
+      producto.cantidad++;
+    } else {
+      carrito.push({ id, nombre, precio, cantidad: 1 });
+    }
+  
+    localStorage.setItem("carrito", JSON.stringify(carrito));
     mostrarCarrito();
   }
-}
-
-function mostrarCarrito() {
-  carritoContainer.innerHTML = "";
-  carrito.forEach(producto => {
-    carritoContainer.innerHTML += `
-      <div class="carrito-item">
-        <h4>${producto.nombre}</h4>
-        <p>Precio: $${producto.precio}</p>
-      </div>
-    `;
+  
+  document.getElementById('vaciar-carrito').addEventListener('click', function() {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres vaciar el carrito?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, vaciar carrito',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        carrito = [];
+        localStorage.clear();
+        mostrarCarrito();
+        Swal.fire(
+          'Carrito vaciado',
+          'El carrito ha sido vaciado completamente',
+          'success'
+        )
+      }
+    })
   });
-
-  if (carrito.length === 0) {
-    carritoContainer.innerHTML = "<p>No hay productos en el carrito.</p>";
-  }
-}
-
-vaciarCarritoBtn.addEventListener("click", () => {
-  carrito.length = 0;
-  mostrarCarrito();
-});
